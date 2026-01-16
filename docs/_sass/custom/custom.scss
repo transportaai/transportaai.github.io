@@ -1,0 +1,38 @@
+.btn {
+  font-size: 12px !important;  // Force smaller size for all buttons
+  padding: 0.5rem 1rem;        // Adjust padding if needed
+}
+
+.site-header {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+  position: relative !important;
+}
+
+.site-logo {
+  height: 150px !important;
+  width: 100% !important;
+  object-fit: contain !important;
+  margin-top: 5rem !important;
+}
+
+.nav-list {
+  padding-top: 2rem !important;  // Adds space above navigation menu
+}
+
+h3 a {
+  color: inherit !important;
+  text-decoration: none !important;
+  
+  &:hover {
+    text-decoration: underline !important;
+  }
+}
+
+blockquote {
+  border-left: none !important;  // Optional: removes the left border
+}
+
+.nav-list {
+  display: none !important;
+}
