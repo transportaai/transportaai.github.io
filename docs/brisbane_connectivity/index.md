@@ -39,7 +39,7 @@ This analysis provides evidence-based insights for transport planning, highlight
 ### 1.1 Background
 {: .no_toc}
 
-TransLink's network promises to connect Southeast Queensland, but how well does it deliver? While patronage data shows *how many* people travel, travel time analysis reveals *how efficiently* they can reach their destinations.
+While patronage data shows *how many* people travel, travel time analysis reveals *how efficiently* they can reach their destinations.
 
 Understanding travel times is critical for:
 
