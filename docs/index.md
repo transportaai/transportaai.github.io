@@ -7,7 +7,7 @@ nav_order: 1
 <strong>Transport Analytics & Insights</strong>
 </h1>
 
-## 🚇 [Mapping Connectivity Across Brisbane: What GTFS Reveals](brisbane_connectivity/){: target="_blank"}
+## 🚇 <a href="brisbane_connectivity/" target="_blank" style="color: inherit; text-decoration: none;">Mapping Connectivity Across Brisbane: What GTFS Reveals</a>
 {: .mb-1}
 
 GTFS \| Geospatial Analysis \| Public Transport Analytics \| Brisbane City \| Accessibility Analysis
@@ -35,7 +35,7 @@ GTFS \| Geospatial Analysis \| Public Transport Analytics \| Brisbane City \| Ac
 
 ---
 
-## 🚆 [Translink Origin-Destination Analysis](translink-od/){: target="_blank"}
+## 🚇 <a href="translink-od/" target="_blank" style="color: inherit; text-decoration: none;">Translink Origin-Destination Analysis</a>
 {: .mb-1}
 
 Translink \| Patronage \| Public Transport \| Data Visualization \| Python
@@ -64,7 +64,7 @@ Translink \| Patronage \| Public Transport \| Data Visualization \| Python
 
 ---
 
-## 🤖 [Feature Engineering Impact Analysis](feature_engineering_impact_analysis/){: target="_blank"}
+## 🚇 <a href="feature_engineering_impact_analysis/" target="_blank" style="color: inherit; text-decoration: none;">Feature Engineering Impact Analysis</a>
 {: .mb-1}
 
 Machine Learning \| Time Series Forecasting \| Feature Engineering \| Python
