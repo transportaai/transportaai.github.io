@@ -217,6 +217,7 @@ Suburbs with both bus and rail access predominantly achieve fast and frequent cl
 
 - **Temporal**: Analysis covers one week (January 12-18, 2026) and may not reflect seasonal patterns, long-term trends, or temporary service changes due to maintenance.
 - **Methodology**: GTFS data shows scheduled—not actual—performance. The analysis excludes transfer journeys, walking/waiting times, and peak-hour congestion effects. Travel times represent in-vehicle duration only.
+- **Demand**: Analysis does not consider population density, actual patronage levels, or ridership demand, which are critical factors in evaluating service adequacy and efficiency.
 - **Geographic**: Focus on Brisbane City connectivity doesn't capture suburb-to-suburb travel or access to other major centers.
 - **Interpretation**: Accessibility classifications use median-based thresholds. Weekend reductions may reflect temporary maintenance rather than standard patterns.
 
