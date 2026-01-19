@@ -35,7 +35,7 @@ GTFS \| Geospatial Analysis \| Public Transport Analytics \| Brisbane City \| Ac
 
 ---
 
-## 🚇 <a href="translink-od/" target="_blank" style="color: inherit; text-decoration: none;">Translink Origin-Destination Analysis</a>
+## 🚆 <a href="translink-od/" target="_blank" style="color: inherit; text-decoration: none;">Translink Origin-Destination Analysis</a>
 {: .mb-1}
 
 Translink \| Patronage \| Public Transport \| Data Visualization \| Python
@@ -64,7 +64,7 @@ Translink \| Patronage \| Public Transport \| Data Visualization \| Python
 
 ---
 
-## 🚇 <a href="feature_engineering_impact_analysis/" target="_blank" style="color: inherit; text-decoration: none;">Feature Engineering Impact Analysis</a>
+## 🤖 <a href="feature_engineering_impact_analysis/" target="_blank" style="color: inherit; text-decoration: none;">Feature Engineering Impact Analysis</a>
 {: .mb-1}
 
 Machine Learning \| Time Series Forecasting \| Feature Engineering \| Python
