@@ -31,6 +31,7 @@ GTFS \| Geospatial Analysis \| Public Transport Analytics \| Brisbane City \| Ac
 </details>
 
 > [Read Full Analysis →](brisbane_connectivity/){: .btn .btn-blue target="_blank"}
+> [View Dashboard →](https://public.tableau.com/app/profile/sanjeev.bhurtyal2011/viz/SEQSuburbTransitMetrics/Dashboard){: .btn .btn-outline target="_blank"}
 > [View Code Repository →](https://github.com/sanjeevbhurtyal/SEQ_Suburb_Transit_Metrics){: .btn .btn-outline target="_blank"}
 
 ---

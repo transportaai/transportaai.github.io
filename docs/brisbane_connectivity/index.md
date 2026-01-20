@@ -228,6 +228,7 @@ Despite these constraints, the analysis offers valuable insights into network pe
 - GTFS data obtained from <a href="https://www.data.qld.gov.au/dataset/general-transit-feed-specification-gtfs-translink/resource/e43b6b9f-fc2b-4630-a7c9-86dd5483552b" target="_blank" rel="noopener noreferrer">Queensland Open Data Portal</a>
 - Locality boundaries from <a href="https://qldspatial.information.qld.gov.au/catalogue/custom/detail.page?fid={8F24D271-EE3B-491C-915C-E7DD617F95DC}" target="_blank" rel="noopener noreferrer">Queensland Spatial Catalogue</a>
 - Analysis code available on <a href="https://github.com/sanjeevbhurtyal/SEQ_Suburb_Transit_Metrics" target="_blank" rel="noopener noreferrer">GitHub</a>
+- Dashboard available on <a href="https://public.tableau.com/app/profile/sanjeev.bhurtyal2011/viz/SEQSuburbTransitMetrics/Dashboard" target="_blank" rel="noopener noreferrer">Tableau</a>
 - All results reproducible using provided scripts
 
 ---
