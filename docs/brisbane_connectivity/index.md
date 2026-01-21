@@ -1,6 +1,7 @@
 ---
-title: Mapping Connectivity Across Brisbane: What GTFS Reveals
+title: Mapping Connectivity Across Brisbane
 nav_enabled: true
+nav_order: 2
 ---
 
 <h1 style="text-align:center;">

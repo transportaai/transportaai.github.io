@@ -7,7 +7,7 @@ nav_order: 1
 <strong>Transport Analytics & Insights</strong>
 </h1>
 
-## 🚇 <a href="brisbane_connectivity/" target="_blank" style="color: inherit; text-decoration: none;">Mapping Connectivity Across Brisbane: What GTFS Reveals</a>
+### 🚇 <a href="brisbane_connectivity/" style="color: inherit; text-decoration: none;">Mapping Connectivity Across Brisbane: What GTFS Reveals</a>
 {: .mb-1}
 
 GTFS \| Geospatial Analysis \| Public Transport Analytics \| Brisbane City \| Accessibility Analysis
@@ -30,13 +30,13 @@ GTFS \| Geospatial Analysis \| Public Transport Analytics \| Brisbane City \| Ac
 
 </details>
 
-> [Read Full Analysis →](brisbane_connectivity/){: .btn .btn-blue target="_blank"}
+> [Read Full Analysis →](brisbane_connectivity/){: .btn .btn-blue}
 > [View Dashboard →](https://public.tableau.com/app/profile/sanjeev.bhurtyal2011/viz/SEQSuburbTransitMetrics/Dashboard){: .btn .btn-outline target="_blank"}
 > [View Code Repository →](https://github.com/sanjeevbhurtyal/SEQ_Suburb_Transit_Metrics){: .btn .btn-outline target="_blank"}
 
 ---
 
-## 🚆 <a href="translink-od/" target="_blank" style="color: inherit; text-decoration: none;">Translink Origin-Destination Analysis</a>
+### 🚆 <a href="translink-od/" style="color: inherit; text-decoration: none;">Translink Origin-Destination Analysis</a>
 {: .mb-1}
 
 Translink \| Patronage \| Public Transport \| Data Visualization \| Python
@@ -59,13 +59,13 @@ Translink \| Patronage \| Public Transport \| Data Visualization \| Python
 
 </details>
 
-> [Read Full Analysis →](translink-od/){: .btn .btn-blue  target="_blank"}
+> [Read Full Analysis →](translink-od/){: .btn .btn-blue }
 > [View Dashboard →](https://public.tableau.com/app/profile/sanjeev.bhurtyal2011/viz/TranslinkPatronageAnlaysis/SuburbProfile){: .btn .btn-outline target="_blank"}
 > [View Code Repository →](https://github.com/sanjeevbhurtyal/Translink_OD_Trip_Analysis){: .btn .btn-outline target="_blank"}
 
 ---
 
-## 🤖 <a href="feature_engineering_impact_analysis/" target="_blank" style="color: inherit; text-decoration: none;">Feature Engineering Impact Analysis</a>
+### 🤖 <a href="feature_engineering_impact_analysis/" style="color: inherit; text-decoration: none;">Feature Engineering Impact Analysis</a>
 {: .mb-1}
 
 Machine Learning \| Time Series Forecasting \| Feature Engineering \| Python
@@ -87,20 +87,11 @@ Machine Learning \| Time Series Forecasting \| Feature Engineering \| Python
 
 </details>
 
-> [Read Full Analysis →](feature_engineering_impact_analysis/){: .btn .btn-blue  target="_blank"}
+> [Read Full Analysis →](feature_engineering_impact_analysis/){: .btn .btn-blue }
 > [View Code Repository →](https://github.com/sanjeevbhurtyal/London-Bike-Sharing-Forecaset-Python-ML){: .btn .btn-outline target="_blank"}
 
 ---
 
-## About Me
->I am Sanjeev Bhurtyal, a transport data analyst and researcher with a passion for leveraging data-driven insights to enhance transportation systems. With expertise in machine learning, optimization, and spatial analysis, I focus on solving complex challenges in freight and passenger transport.
-{: .text-grey-dk-300 .fs-3 }
-
->**Background:**
->- PhD in Transportation Data Science from University of Arkansas
->- Experience working as a Senior Analyst at Department of Transport and Main Roads (Queensland) and consultant at Applied Research Associates (USA)
->- Published researcher in transportation systems optimization and machine learning
-{: .text-grey-dk-300 .fs-3 }
->[View Publications →](publications/){: .btn .btn-blue target="_blank"}
+{% include about_me.md %}
 
 {% include get-in-touch.html %}
