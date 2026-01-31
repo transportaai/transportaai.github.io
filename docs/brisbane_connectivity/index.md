@@ -245,3 +245,5 @@ This connectivity analysis complements the <a href="../translink-od/" target="_b
 ---
 
 <small>Analysis current as of January 2026. Transit schedules and service patterns are subject to change. Readers should verify current service information with TransLink before making travel decisions.</small>
+
+{% include head_custom.html %}

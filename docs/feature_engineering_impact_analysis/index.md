@@ -291,4 +291,5 @@ This analysis provides empirical evidence for a core machine learning principle:
 - **Repository**: <a href="https://github.com/sanjeevbhurtyal/London-Bike-Sharing-Forecaset-Python-ML" target="_blank" rel="noopener noreferrer">London-Bike-Sharing-Forecaset-Python-ML</a>
 
 {% include get-in-touch.html %}
+{% include head_custom.html %}
 

@@ -3,9 +3,26 @@ layout: home
 title: Home
 nav_order: 1
 ---
+
 <h1 style="text-align:center;">
 <strong>Transport Analytics & Insights</strong>
 </h1>
+
+<!-- 
+### <a href="transitmate_chatbot/" style="color: inherit; text-decoration: none;">TranistMate - Translink Service Update Chatbot</a>
+{: .mb-1}
+
+Translink Service Updates Chatbot \| LLM \| RAG \| Conversational AI
+{: .text-grey-dk-000 .fs-3 .mb-2}
+
+<details markdown="block">
+  <summary>Click to expand summary</summary>
+  
+>An intelligent conversational AI system that provides real-time answers to questions about Translink (Brisbane) service disruptions, closures, and impacts using Retrieval-Augmented Generation (RAG).
+>{: .text-grey-dk-300 .fs-3 }
+</details>
+
+--- -->
 
 ### 🚇 <a href="brisbane_connectivity/" style="color: inherit; text-decoration: none;">Mapping Connectivity Across Brisbane: What GTFS Reveals</a>
 {: .mb-1}
@@ -93,5 +110,5 @@ Machine Learning \| Time Series Forecasting \| Feature Engineering \| Python
 ---
 
 {% include about_me.md %}
-
 {% include get-in-touch.html %}
+{% include head_custom.html %}
