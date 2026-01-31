@@ -64,3 +64,44 @@ blockquote {
 .nav-list > .nav-list-item:last-child {
   border-bottom: none;
 }
+
+/* Make images clickable */
+.clickable-img-item {
+  cursor: zoom-in;
+  transition: transform 0.25s ease;
+}
+
+/* Expanded fullscreen mode */
+.clickable-img-item.expanded {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: auto !important;
+  height: auto !important;
+
+  /* Fit to screen */
+  max-width: 90vw;
+  max-height: 90vh;
+
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+
+  cursor: zoom-out;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+
+  /* Dim background */
+  background: rgba(0,0,0,0.85);
+  padding: 10px;
+  border-radius: 6px;
+}
+
+/* Stack images vertically inside each item */
+.clickable-img-item img {
+  display: block;
+  width: 100%;
+  margin-bottom: 6px; /* small gap between the two images */
+}
+
+
+
+
