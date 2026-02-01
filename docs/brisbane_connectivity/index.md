@@ -1,7 +1,7 @@
 ---
 title: Mapping Connectivity Across Brisbane
 nav_enabled: true
-nav_order: 2
+nav_order: 3
 ---
 
 <h1 style="text-align:center;">
