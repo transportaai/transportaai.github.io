@@ -95,13 +95,61 @@ blockquote {
   border-radius: 6px;
 }
 
-/* Stack images vertically inside each item */
+/* Normal state: Stack images vertically */
 .clickable-img-item img {
   display: block;
-  width: 100%;
-  margin-bottom: 6px; /* small gap between the two images */
+  width: 100%; /* full width in normal state */
+  margin-bottom: 6px;
+  cursor: zoom-in ;
+  transition: all 0.3s ease;
 }
 
+/* Expanded state */
+.clickable-img-item.expanded {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  cursor: zoom-out;
+}
+
+/* Side-by-side ONLY when expanded */
+.clickable-img-item.expanded img {
+  display: inline-block !important;
+  max-width: 45vw !important;
+  max-height: 85vh !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain;
+  margin-right: 10px;
+  margin-bottom: 0;
+  cursor: zoom-out !important;
+}
+
+.clickable-img-item.expanded img:last-of-type {
+  margin-right: 0;
+}
+
+/* For single image, allow it to be larger */
+.clickable-img-item.expanded img:only-of-type {
+  max-width: 85vw !important;
+  cursor: zoom-out !important;
+}
+
+/* Hide caption when expanded */
+.clickable-img-item.expanded strong {
+  display: none;
+}
 
 
 

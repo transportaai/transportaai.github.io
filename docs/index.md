@@ -8,21 +8,33 @@ nav_order: 1
 <strong>Transport Analytics & Insights</strong>
 </h1>
 
-<!-- 
-### <a href="transitmate_chatbot/" style="color: inherit; text-decoration: none;">TranistMate - Translink Service Update Chatbot</a>
+
+### 🤖 <a href="transitmate_chatbot/" style="color: inherit; text-decoration: none;">TransitMate - AI-Powered TransLink Service Update Chatbot</a>
 {: .mb-1}
 
-Translink Service Updates Chatbot \| LLM \| RAG \| Conversational AI
+TransLink \| Service Disruptions \| LLM \| RAG \| Conversational AI \| Real-Time Updates
 {: .text-grey-dk-000 .fs-3 .mb-2}
 
 <details markdown="block">
   <summary>Click to expand summary</summary>
-  
->An intelligent conversational AI system that provides real-time answers to questions about Translink (Brisbane) service disruptions, closures, and impacts using Retrieval-Augmented Generation (RAG).
+
+>An intelligent conversational AI system that delivers **real-time, context-aware responses** to natural language queries about TransLink service disruptions, track closures, and stop impacts using Retrieval-Augmented Generation (RAG).
 >{: .text-grey-dk-300 .fs-3 }
+>**Key Features:** 
+>{: .text-black-dk-300 .fs-3 }
+>- 🔍 **Rapid Information Retrieval**: Query current service impacts instantly without manual web navigation
+>- 🧠 **Intelligent Context Understanding**: Comprehends relationships between routes, locations, and time-sensitive events
+>- 📊 **Automated Extraction**: Parses unstructured transit notices into actionable summaries automatically
+>- 🎯 **Hybrid Search Strategy**: Combines semantic embeddings with keyword matching for high-precision route and stop identification
+>- ⚡ **Real-Time Monitoring**: Continuously ingests official TransLink RSS feeds and enriches data with structured metadata
+{: .text-grey-dk-300 .fs-3 }
+
 </details>
 
---- -->
+> [View Project Details →](transitmate_chatbot/){: .btn .btn-blue}
+> [View Code Repository →](https://github.com/sanjeevbhurtyal/Translink_Service_Update_RAG_Chatbot){: .btn .btn-outline target="_blank"}
+
+---
 
 ### 🚇 <a href="brisbane_connectivity/" style="color: inherit; text-decoration: none;">Mapping Connectivity Across Brisbane: What GTFS Reveals</a>
 {: .mb-1}
