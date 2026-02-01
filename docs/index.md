@@ -123,4 +123,3 @@ Machine Learning \| Time Series Forecasting \| Feature Engineering \| Python
 
 {% include about_me.md %}
 {% include get-in-touch.html %}
-{% include head_custom.html %}

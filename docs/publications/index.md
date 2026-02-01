@@ -29,5 +29,3 @@ nav_exclude: true
 **Summary:** Developed machine learning and optimization frameworks to overcome data constraints in waterborne freight systems, improving prediction accuracy and supporting infrastructure planning decisions.
 {: .text-grey-dk-300 .fs-3 }
 ---
-
-{% include head_custom.html %}

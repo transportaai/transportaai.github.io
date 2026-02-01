@@ -202,5 +202,3 @@ At the opposite extreme, **Donnan, Riverbend, and North Arm experienced patronag
 - Granual analysis at suburb and operator level is available at <a href="https://public.tableau.com/views/TranslinkPatronageAnlaysis/SuburbProfile?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" rel="noopener noreferrer">Tableau dashboard</a>.
 
 {% include get-in-touch.html %}
-{% include head_custom.html %}
-

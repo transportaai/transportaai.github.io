@@ -290,6 +290,3 @@ This analysis provides empirical evidence for a core machine learning principle:
 - **Dataset**: <a href="https://www.kaggle.com/datasets/hmavrodiev/london-bike-sharing-dataset" target="_blank" rel="noopener noreferrer">London Bike Sharing Dataset</a> – Kaggle
 - **Repository**: <a href="https://github.com/sanjeevbhurtyal/London-Bike-Sharing-Forecaset-Python-ML" target="_blank" rel="noopener noreferrer">London-Bike-Sharing-Forecaset-Python-ML</a>
 
-{% include get-in-touch.html %}
-{% include head_custom.html %}
-
