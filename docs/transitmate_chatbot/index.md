@@ -134,7 +134,6 @@ While designed for planners, the system is built on a robust, privacy-focused te
 ---
 
 {% include get-in-touch.html %}
-{% include head_custom.html %}
 
 <script>
   function toggleExpand(img) {
