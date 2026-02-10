@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <script>
+      // GitHub Pages SPA redirect script
+      // This handles direct URL access to client-side routes
+
+      // Store the current path in session storage
+      sessionStorage.setItem(
+        "redirect",
+        location.pathname + location.search + location.hash,
+      );
+
+      // Redirect to the root, where React Router will handle the routing
+      location.replace("/");
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to the application...</p>
+  </body>
+</html>
