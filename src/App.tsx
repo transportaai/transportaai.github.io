@@ -72,7 +72,9 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/projects/brisbane_connectivity" element={<BrisbaneConnectivity />} />
+        <Route path="/brisbane_connectivity" element={<BrisbaneConnectivity />} />
         <Route path="/projects/translink_od" element={<TranslinkOD />} />
+        <Route path="/translink-od" element={<TranslinkOD />} />
         <Route path="/projects/transitmate_chatbot" element={<TransitmateChatbot />} />
         <Route path="/projects/feature_engineering_impact_analysis" element={<FeatureEngineeringImpactAnalysis />} />
         <Route path="/projects" element={<AllProjects />} />
