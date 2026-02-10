@@ -10,8 +10,8 @@ export default function Publications() {
   const dissertations = publications.filter(p => p.type === 'dissertation');
 
   const PublicationCard = ({ pub }: { pub: typeof publications[0] }) => (
-    <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-      <div className="flex flex-col gap-3">
+    <div className="bg-white rounded-xl p-2 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+      <div className="flex flex-col gap-1">
         <h3 className="text-lg font-bold text-[#2c3e50] leading-tight">
           {pub.title}
         </h3>
@@ -103,13 +103,13 @@ export default function Publications() {
           <div className="space-y-12">
             {/* Peer-Reviewed Journal Articles */}
             <section>
-              <div className="flex items-center gap-3 mb-8 border-b border-gray-200 pb-4">
+              <div className="flex items-center gap-3 mb-4 border-b border-gray-200 pb-2">
                 <div className="p-2 bg-blue-100 rounded-lg">
                   <BookOpen className="w-6 h-6 text-blue-600" />
                 </div>
                 <h2 className="text-2xl font-bold text-[#2c3e50]">Peer-Reviewed Journal Articles</h2>
               </div>
-              <div className="grid gap-6">
+              <div className="grid gap-3">
                 {journals.map(pub => (
                   <PublicationCard key={pub.id} pub={pub} />
                 ))}
@@ -118,13 +118,13 @@ export default function Publications() {
 
             {/* Conference Proceedings */}
             <section>
-              <div className="flex items-center gap-3 mb-8 border-b border-gray-200 pb-4">
+              <div className="flex items-center gap-3 mb-4 border-b border-gray-200 pb-2">
                 <div className="p-2 bg-orange-100 rounded-lg">
                   <Users className="w-6 h-6 text-orange-600" />
                 </div>
                 <h2 className="text-2xl font-bold text-[#2c3e50]">Conference Proceedings</h2>
               </div>
-              <div className="grid gap-6">
+              <div className="grid gap-3">
                 {conferences.map(pub => (
                   <PublicationCard key={pub.id} pub={pub} />
                 ))}
@@ -133,13 +133,13 @@ export default function Publications() {
 
             {/* Dissertation */}
             <section>
-              <div className="flex items-center gap-3 mb-8 border-b border-gray-200 pb-4">
+              <div className="flex items-center gap-3 mb-4 border-b border-gray-200 pb-2">
                 <div className="p-2 bg-purple-100 rounded-lg">
                   <GraduationCap className="w-6 h-6 text-purple-600" />
                 </div>
                 <h2 className="text-2xl font-bold text-[#2c3e50]">Dissertation</h2>
               </div>
-              <div className="grid gap-6">
+              <div className="grid gap-3">
                 {dissertations.map(pub => (
                   <PublicationCard key={pub.id} pub={pub} />
                 ))}
