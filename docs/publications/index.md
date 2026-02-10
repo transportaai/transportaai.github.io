@@ -6,6 +6,8 @@ nav_exclude: true
 # Publications
 ## Peer-Reviewed Journal Articles
 
+Asborno, M., **Bhurtyal, S.**, Mitchell, K. N., Peterson, S. K., & Kress, M. M. (2026). Data Fusion for the Development of a Multimodal Freight Transload Facilities Dataset in the U.S. Transportation Research Record: Journal of the Transportation Research Board, 0(0). [Available here](https://doi.org/10.1177/03611981251394678){: target="_blank" }
+{: .text-grey-dk-300 .fs-3 }
 **Bhurtyal, S.**, Bui, H., Hernandez, S., Eksioglu, S., Asborno, M., Mitchell, K. N., & Kress, M. (2025). Prediction of waterborne freight activity with Automatic Identification System using Machine learning. *Computers & Industrial Engineering*, 200, 110757. [Available here](https://www.sciencedirect.com/science/article/abs/pii/S0360835224008799){: target="_blank" }.
 {: .text-grey-dk-300 .fs-3 }
 **Bhurtyal, S.**, Hernandez, S., Amankwah-Nkyi, K. (2024). Data-Driven Methods to Assess Transportation System Resilience: Case Study of the Arkansas Roadway Network. *Journal of Transportation Engineering, Part A: Systems*. 10.1061/JTEPBS/TEENG-8064. [Available here](https://ascelibrary.org/doi/10.1061/JTEPBS.TEENG-8064){: target="_blank" }.
