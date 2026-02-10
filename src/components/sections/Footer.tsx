@@ -68,6 +68,8 @@ export default function Footer() {
                   <a
                     key={social.platform}
                     href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="social-link"
                     aria-label={social.platform}
                   >
