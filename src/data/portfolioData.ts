@@ -116,7 +116,7 @@ export const projects: Project[] = [
     icon: "route",
     image: transitMateChatbot,
     tags: ["Translink", "Chatbot", "Service Disruptions", "Python", "RAG", "LLM", "Conversational AI"],
-    link: "/projects/transitmate_chatbot/transitmate_chatbot",
+    link: "/projects/transitmate_chatbot",
     color: "from-green-500 to-teal-500"
   },
   {
@@ -126,7 +126,7 @@ export const projects: Project[] = [
     icon: "route",
     image: brisbaneCityNetwork,
     tags: ["GTFS", "Network Analysis", "Geospatial Analysis", "Brisbane City", "Python", "Accessibility Analysis", "Translink"],
-    link: "/projects/brisbane_connectivity/brisbane_connectivity",
+    link: "/projects/brisbane_connectivity",
     color: "from-blue-500 to-cyan-500"
   },
   {
@@ -136,7 +136,7 @@ export const projects: Project[] = [
     icon: "subway",
     image: translinkBus,
     tags: ["Translink", "Patronage", "Python", "Data Visualization", "Tableau"],
-    link: "/projects/translink_od/translink_od",
+    link: "/projects/translink_od",
     color: "from-purple-500 to-pink-500"
   },
   {
@@ -146,7 +146,7 @@ export const projects: Project[] = [
     icon: "robot",
     image: featureEngineering,
     tags: ["Machine Learning", "Feature Engineering", "Time Series Forecasting", "Python", "Bike Sharing"],
-    link: "/projects/feature_engineering_impact_analysis/feature_engineering_impact_analysis",
+    link: "/projects/feature_engineering_impact_analysis",
     color: "from-purple-500 to-pink-500"
   }
 ];
