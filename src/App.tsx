@@ -67,18 +67,14 @@ function HomePage() {
 
 function App() {
   return (
-    <Router basename={import.meta.env.BASE_URL}>
+    <Router>
       <ScrollToTopOrHash />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/projects/brisbane_connectivity/brisbane_connectivity" element={<BrisbaneConnectivity />} />
-        <Route path="/brisbane_connectivity" element={<BrisbaneConnectivity />} />
-        <Route path="/projects/translink_od/translink_od" element={<TranslinkOD />} />
-        <Route path="/translink-od" element={<TranslinkOD />} />
-        <Route path="/projects/transitmate_chatbot/transitmate_chatbot" element={<TransitmateChatbot />} />
-        <Route path="/transitmate_chatbot" element={<TransitmateChatbot />} />
-        <Route path="/projects/feature_engineering_impact_analysis/feature_engineering_impact_analysis" element={<FeatureEngineeringImpactAnalysis />} />
-        <Route path="/feature_engineering_impact_analysis" element={<FeatureEngineeringImpactAnalysis />} />
+        <Route path="/projects/brisbane_connectivity" element={<BrisbaneConnectivity />} />
+        <Route path="/projects/translink_od" element={<TranslinkOD />} />
+        <Route path="/projects/transitmate_chatbot" element={<TransitmateChatbot />} />
+        <Route path="/projects/feature_engineering_impact_analysis" element={<FeatureEngineeringImpactAnalysis />} />
         <Route path="/projects" element={<AllProjects />} />
         <Route path="/publications" element={<Publications />} />
       </Routes>
