@@ -59,7 +59,7 @@ export default function Footer() {
               </span>
             </a>
             <p className="text-white/70 text-sm leading-relaxed mb-6 max-w-sm mx-auto">
-              Transforming urban mobility through data-driven insights and analytics for public transportation networks.
+              Transforming transportation systems through data-driven insights and analytics.
             </p>
             <div className="flex gap-3 justify-center">
               {socialLinks.map((social) => {
