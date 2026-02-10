@@ -13,6 +13,45 @@ import FeatureEngineeringImpactAnalysis from '@/components/projects/feature_engi
 import AllProjects from '@/components/AllProjects';
 import Publications from '@/components/Publications';
 
+// Declare gtag for TypeScript
+declare global {
+  interface Window {
+    gtag: (command: string, id: string, config?: any) => void;
+  }
+}
+
+function PageMetadata() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // 1. Update Document Title
+    const baseTitle = "Transporta Analytics & Insights";
+    const routeTitles: Record<string, string> = {
+      "/": "Home | " + baseTitle,
+      "/projects": "All Projects | " + baseTitle,
+      "/publications": "Publications | " + baseTitle,
+      "/projects/brisbane_connectivity": "Brisbane Connectivity | " + baseTitle,
+      "/brisbane_connectivity": "Brisbane Connectivity | " + baseTitle,
+      "/projects/translink_od": "Translink Patronage | " + baseTitle,
+      "/translink-od": "Translink Patronage | " + baseTitle,
+      "/projects/transitmate_chatbot": "TransitMate Chatbot | " + baseTitle,
+      "/projects/feature_engineering_impact_analysis": "Feature Engineering | " + baseTitle,
+    };
+
+    const newTitle = routeTitles[pathname] || "Transport Analytics & Insights | " + baseTitle;
+    document.title = newTitle;
+
+    // 2. Track Page View in Google Analytics
+    if (window.gtag) {
+      window.gtag('config', 'G-8CTJS8JXM1', {
+        page_path: pathname,
+      });
+    }
+  }, [pathname]);
+
+  return null;
+}
+
 function ScrollToTopOrHash() {
   const { pathname, hash, state } = useLocation();
   const navType = useNavigationType();
@@ -68,6 +107,7 @@ function HomePage() {
 function App() {
   return (
     <Router>
+      <PageMetadata />
       <ScrollToTopOrHash />
       <Routes>
         <Route path="/" element={<HomePage />} />
