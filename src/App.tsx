@@ -25,7 +25,7 @@ function PageMetadata() {
 
   useEffect(() => {
     // 1. Update Document Title
-    const baseTitle = "Transporta Analytics & Insights";
+    const baseTitle = "Transport Analytics & Insights";
     const routeTitles: Record<string, string> = {
       "/": "Home | " + baseTitle,
       "/projects": "All Projects | " + baseTitle,
