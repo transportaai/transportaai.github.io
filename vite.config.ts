@@ -13,7 +13,8 @@ export default defineConfig({
     inspectAttr(), 
     react(),
     Sitemap({
-      hostname: 'https://transportaai.github.io',
+      // hostname: 'https://transportaai.github.io',
+      hostname: 'https://transportaai.com',
       dynamicRoutes: [
         '/projects',
         '/publications',
