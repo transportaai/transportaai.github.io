@@ -2,6 +2,7 @@ import translinkBus from '@/assets/images/TranslinkBus.png';
 import brisbaneCityNetwork from '@/assets/images/BrisbaneCityNetwork.png';
 import transitMateChatbot from '@/assets/images/TransitMateChatbot.png';
 import featureEngineering from '@/assets/images/FeatureEngineering.png';
+import TransitShowdown from '@/assets/images/TransitShowdown.png';
 
 export interface Project {
   id: number;
@@ -121,6 +122,16 @@ export const projects: Project[] = [
   },
   {
     id: 2,
+    title: "The Great Australian Transit Showdown",
+    description: "Brisbane vs Sydney vs Melbourne: Who's the true transit champion? Analyzing GTFS data to compare accessibility, travel times, and infrastructure across Australia's three largest cities.",
+    icon: "robot",
+    image: TransitShowdown,
+    tags: ["GTFS", "Network Analysis", "Geospatial Analysis", "Brisbane", "Sydney", "Melbourne", "Python"],
+    link: "/projects/the_great_australian_transit_showdown",
+    color: "from-purple-500 to-pink-500"
+  },
+  {
+    id: 3,
     title: "Mapping Connectivity Across Brisbane: What GTFS Reveals",
     description: "Analyzing 244 direct suburb connections to Brisbane City using GTFS data (January 12-18, 2026) to reveal how efficiently residents can reach the city center across different modes and time periods.",
     icon: "route",
@@ -130,7 +141,7 @@ export const projects: Project[] = [
     color: "from-blue-500 to-cyan-500"
   },
   {
-    id: 3,
+    id: 4,
     title: "Decoding Translink Origin Destination Patronage Data",
     description: "Examined 470 million trips across TransLink’s bus, train, and ferry networks from January 2022 to October 2025, revealing a public transport system experiencing rapid transformation.",
     icon: "subway",
@@ -139,8 +150,9 @@ export const projects: Project[] = [
     link: "/projects/translink_od",
     color: "from-purple-500 to-pink-500"
   },
+
   {
-    id: 4,
+    id: 5,
     title: "Feature Engineering Impact Analysis",
     description: "demonstrates the fundamental importance of feature engineering in machine learning model performance through a controlled experiment using London bike sharing demand forecasting.",
     icon: "robot",

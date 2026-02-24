@@ -25,7 +25,7 @@ import Footer from '@/components/sections/Footer';
 import Header from '@/components/sections/Header';
 import HumorWarning from '@/components/HumorWarning';
 
-// Placeholder for maps - UPDATE THESE PATHS
+// Maps and Graphs
 import mapBrisbane from './assets/figures/brisbane_isochrone_map.html?url';
 import mapSydney from './assets/figures/sydney_isochrone_map.html?url';
 import mapMelbourne from './assets/figures/melbourne_isochrone_map.html?url';
@@ -85,25 +85,108 @@ const HorizontalBar = ({ label, value, color, maxValue, comment }: { label: stri
 );
 
 // Vertical Bar Chart
+// Vertical Bar Chart
 const VerticalBarChart = ({ data, maxValue }: { data: { label: string; value: number; color: string; subtext: string }[]; maxValue: number }) => (
   <div className="flex items-end justify-around h-64 gap-4">
     {data.map((item, idx) => (
       <div key={idx} className="flex flex-col items-center flex-1">
-        <div 
+
+        {/* Percentage label above bar */}
+        <span className="text-xs font-bold text-gray-700 mb-1">
+          {item.value}%
+        </span>
+
+        <div
           className="w-full rounded-t-lg transition-all duration-1000 ease-out relative"
-          style={{ 
-            height: `${(item.value / maxValue) * 200}px`, 
+          style={{
+            height: `${(item.value / maxValue) * 200}px`,
             backgroundColor: item.color,
             minHeight: '20px'
           }}
         >
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-white text-xs font-bold text-center px-1">{item.subtext}</span>
+            <span className="text-white text-xs font-bold text-center px-1">
+              {item.subtext}
+            </span>
           </div>
         </div>
-        <div className="text-xs text-gray-600 mt-2 text-center font-medium">{item.label}</div>
+
+        <div className="text-xs text-gray-600 mt-2 text-center font-medium">
+          {item.label}
+        </div>
       </div>
     ))}
+  </div>
+);
+
+
+// Grouped Bar Chart
+const GroupedBarChart = ({
+  data, // [{ category: "Train", items: [{ label, value, color }] }]
+  maxValue
+}: {
+  data: {
+    category: string;
+    items: { label: string; value: number; color: string }[];
+  }[];
+  maxValue: number;
+}) => (
+  <div className="w-full border border-gray-200 rounded-lg p-1">
+    {/* Title */}
+    <h3 className="text-center font-semibold mb-4">
+      Population with access to transit stop
+    </h3>
+
+    <div className="flex justify-around gap-6">
+      {data.map((group, idx) => (
+        <div key={idx} className="flex flex-col items-center flex-1">
+          {/* Bars in each category */}
+          <div className="flex items-end gap-2 h-64">
+            {group.items.map((item, i) =>
+              item.value === 0 ? null : (
+                <div key={i} className="flex flex-col items-center">
+                  <div
+                    className="w-6 rounded-t-md relative transition-all duration-700"
+                    style={{
+                      height: `${(item.value / maxValue) * 200}px`,
+                      backgroundColor: item.color
+                    }}
+                  >
+                    <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-xs font-bold text-gray-700">
+                      {item.value}%
+                    </span>
+                  </div>
+                </div>
+              )
+            )}
+          </div>
+
+          {/* Category label */}
+          <div className="text-sm font-medium mt-2">{group.category}</div>
+        </div>
+      ))}
+    </div>
+
+    {/* Legend */}
+    <div className="flex justify-center gap-6 mt-6 text-sm">
+      <div className="flex items-center gap-2">
+        <span className="w-3 h-3 rounded-sm" style={{ background: "#10b981" }}></span>
+        Greater Sydney
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="w-3 h-3 rounded-sm" style={{ background: "#f59e0b" }}></span>
+        Greater Melbourne
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="w-3 h-3 rounded-sm" style={{ background: "#3b82f6" }}></span>
+        Greater Brisbane
+      </div>
+    </div>
+
+    {/* Footnote */}
+    <p className="text-center text-xs text-gray-500 mt-4 mb-4">
+      Access to transit stop is defined as 400m from bus or tram stop and 800m from train or ferry stop.
+    </p>
   </div>
 );
 
@@ -179,26 +262,14 @@ const ComparisonCard = ({ city, color, icon: Icon, population, stops, trips, tag
     {/* Row 1: Header */}
     <div className="flex items-center gap-2 mb-3">
       <Icon className="w-6 h-6" />
-      <h3 className="font-bold text-lg">{city}</h3>
-    </div>
-    
-    {/* Row 2: Tagline - fills available space to push stats down */}
-    <div className="mb-3">
-      <p className="text-sm text-white/90 italic">"{tagline}"</p>
+      <h3 className="font-bold text-lg whitespace-pre-line">{city}</h3>
     </div>
     
     {/* Row 3: Stats - always at same position */}
-    <div className="text-xs text-white/80 mb-3 space-y-1">
-      <div>Pop: {population} | Stops: {stops}</div>
-      <div>Trips: {trips}</div>
-    </div>
-    
-    {/* Row 4: Wins section - always at bottom */}
-    <div className="border-t border-white/30 pt-2">
-      <div className="text-xs font-semibold text-white/90 mb-1">Wins:</div>
-      <ul className="text-xs text-white/80 space-y-0.5">
-        {wins.map((win, i) => <li key={i}>• {win}</li>)}
-      </ul>
+    <div className="text-sm text-white/80 mb-0 space-y-1">
+      <div>Population: {population}</div>
+      <div>Transit Stops: {stops}</div>
+      <div>Daily Trips: {trips}</div>
     </div>
   </div>
 );
@@ -246,14 +317,24 @@ export default function TransitShowdown() {
     { id: "infrastructure", label: "3. Infrastructure Wars" },
     { id: "travel-times", label: "4. Travel Time Reality" },
     { id: "30-minute-city", label: "5. The 30-Minute City" },
-    { id: "mode-wars", label: "6. The Mode Wars" },
+    { id: "walkability", label: "6. Walkability Score" },
     { id: "forgotten-souls", label: "7. The Forgotten Souls" },
-    { id: "walkability", label: "8. Walkability Score" },
-    { id: "speed-vs-coverage", label: "9. Speed vs Coverage" },
-    { id: "scorecard", label: "10. Final Scorecard" },
-    { id: "maps", label: "11. Geographic View" },
+    { id: "maps", label: "8. Geographic View" },
+    { id: "scorecard", label: "9. Final Scorecard" },
     { id: "conclusion", label: "Conclusion" },
   ];
+
+    const externalLinks = [
+      {
+        label: "GitHub Repository",
+        url: "https://github.com/sanjeevbhurtyal/australia-urban-transit",
+        icon: Github,
+      }
+    ];
+
+    const techStack = [
+      "Python", "Pandas", "GeoPandas", "GTFS", "QGIS", "Folium", "Jupyter",
+    ];
 
   // Data from JSON files
   const cityData = {
@@ -310,8 +391,7 @@ export default function TransitShowdown() {
             The Great Australian Transit Showdown
           </h1>
           <p className="text-white/80 text-base sm:text-lg max-w-3xl">
-            Brisbane vs Sydney vs Melbourne: Who's actually getting their citizens to work on time? 
-            Spoiler: Everyone's losing, but some with more style than others.
+            Brisbane vs Sydney vs Melbourne: Who's the true transit champion? We analyzed GTFS data to compare accessibility, travel times, and infrastructure across Australia's three largest cities.
           </p>
         </div>
       </div>
@@ -360,65 +440,48 @@ export default function TransitShowdown() {
               
               {/* Executive Summary */}
               <div id="executive-summary" className="bg-white rounded-2xl p-6 shadow-sm border-l-4 border-secondary scroll-mt-24">
-                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">Executive Summary (For People Who Skipped to the End)</h2>
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 mb-6 border border-blue-200">
+                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">Executive Summary</h2>
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 mb-4 border border-blue-200">
                   <p className="text-gray-600 leading-relaxed">
-                    <strong>The TL;DR:</strong> Sydney's got the most stops (42,847) but Melbourne's got the trams (14.3% access). 
-                    Brisbane has ferries (5.0%) which is cool but also 203,000 people who can't get to the CBD in under 3 hours. 
-                    Everyone thinks they're the best, but the data has opinions.
-                  </p>
+                  This analysis compares transit accessibility across Australia's three largest cities using GTFS data 
+                  from February 19, 2026, 06:00 AM with a 1-hour departure window. We looked at who can get to their CBD 
+                  within 3 hours, who's within walking distance of a stop, and who needs to 
+                  pack a lunch for their commute.
+                </p>
                 </div>
                 
                 {/* Donut Charts */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
-                  <DonutChart percentage={92.7} color="#3b82f6" city="Brisbane" subtitle="92.7% Can Reach CBD" />
-                  <DonutChart percentage={98.0} color="#10b981" city="Sydney" subtitle="98.0% Can Reach CBD" />
-                  <DonutChart percentage={98.4} color="#f59e0b" city="Melbourne" subtitle="98.4% Can Reach CBD" />
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-0">
+                  <p className="text-center text-gray-700 text-sm mb-0 col-span-full">Percentage of population that can reach CBD within 3 hours</p>
+                  <DonutChart percentage={92.7} color="#3b82f6" city="Greater Brisbane" subtitle="" />
+                  <DonutChart percentage={98.0} color="#10b981" city="Greater Sydney" subtitle="" />
+                  <DonutChart percentage={98.4} color="#f59e0b" city="Greater Melbourne" subtitle="" />
                 </div>
-
-                <p className="text-gray-600 leading-relaxed">
-                  This analysis compares transit accessibility across Australia's three largest cities using GTFS data 
-                  from February 19, 2026, 06:00 with a 1-hour departure window. We looked at who can get to their CBD 
-                  within 3 hours (the bar is low, people), who's within walking distance of a stop, and who needs to 
-                  pack a lunch for their commute.
-                </p>
               </div>
 
               {/* The Contenders */}
               <div id="the-contenders" className="bg-white rounded-2xl p-6 shadow-sm scroll-mt-24">
                 <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">1. The Contenders: Meet the Fighters</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-0">
                   <ComparisonCard 
-                    city="Brisbane" color="#3b82f6" icon={Ship}
+                    city={"Greater\nBrisbane"} color="#3b82f6" icon={Ship}
                     population="2.78M" stops="12,794" trips="20,622"
-                    tagline="At least we have good weather"
-                    wins={["Trips per 1,000 (7.41)", "30-min access (6.34%)", "Ferry game (5.0%)"]}
+                    tagline=""
+                    wins={[""]}
                   />
                   <ComparisonCard 
-                    city="Sydney" color="#10b981" icon={Train}
+                    city={"Greater\nSydney"} color="#10b981" icon={Train}
                     population="5.56M" stops="42,847" trips="47,707"
-                    tagline="Size matters"
-                    wins={["Total stops (42,847)", "Walkable access (90.7%)", "Reachability (98.0%)"]}
+                    tagline=""
+                    wins={[""]}
                   />
                   <ComparisonCard 
-                    city="Melbourne" color="#f59e0b" icon={Navigation}
+                    city={"Greater\nMelbourne"} color="#f59e0b" icon={Navigation}
                     population="5.35M" stops="28,807" trips="37,328"
-                    tagline="Trams fix everything"
-                    wins={["Best reachability (98.4%)", "Tram access (14.3%)", "Fewest unreachable (88k)"]}
+                    tagline=""
+                    wins={[""]}
                   />
                 </div>
-
-                {/* Raw Numbers Bar Chart */}
-                <h3 className="font-semibold text-gray-800 mb-4">Raw Infrastructure Numbers</h3>
-                <VerticalBarChart 
-                  data={[
-                    { label: 'Brisbane', value: 12794, color: '#3b82f6', subtext: '12,794 stops' },
-                    { label: 'Sydney', value: 42847, color: '#10b981', subtext: '42,847 stops' },
-                    { label: 'Melbourne', value: 28807, color: '#f59e0b', subtext: '28,807 stops' }
-                  ]}
-                  maxValue={42847}
-                />
-                <p className="text-xs text-gray-400 mt-2 text-center italic">Sydney has more stops than a magpie has reasons to swoop you.</p>
               </div>
 
               {/* Reachability */}
@@ -449,7 +512,7 @@ export default function TransitShowdown() {
                     <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
                     <div>
                       <h4 className="font-semibold text-red-700 text-sm mb-1">The Brisbane Problem</h4>
-                      <p className="text-xs text-red-600">Brisbane leaves behind <strong>202,842 people</strong> who can't reach the CBD in 3 hours. That's roughly the population of Mackay just... stranded. Sydney and Melbourne only forget about 109k and 88k respectively. Brisbane, we need to talk.</p>
+                      <p className="text-sm text-red-600">Brisbane leaves behind <strong>202K people</strong> who can't reach the CBD in 3 hours. That's roughly the population of Mackay just... stranded. Sydney and Melbourne only forget about 109k and 88k respectively. Brisbane, we need to talk.</p>
                     </div>
                   </div>
                 </div>
@@ -457,37 +520,34 @@ export default function TransitShowdown() {
 
               {/* Infrastructure */}
               <div id="infrastructure" className="bg-white rounded-2xl p-6 shadow-sm scroll-mt-24">
-                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">3. Infrastructure Wars: Quantity vs Quality</h2>
-                <p className="text-gray-600 mb-4">Raw numbers don't tell the whole story, but they do tell a story. Sydney's got more stops than it knows what to do with, while Melbourne's playing the efficiency game.</p>
+                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">3. Infrastructure Wars</h2>
+                <p className="text-gray-600 mb-4">Sydney has got more stops than a magpie has vendettas. Meanwhile, Brisbane’s working lean and Melbourne’s trying to work smarter, but let’s be honest: everyone’s just trying to survive the Infrastructure Hunger Games.</p>
                 
                 <div className="space-y-6">
                   <div>
-                    <h3 className="font-semibold text-gray-800 mb-3">Stops per 1,000 People</h3>
+                    <h3 className="font-semibold text-gray-800 mb-3 text-center">Stops per 1,000 People</h3>
                     <HorizontalBar label="Brisbane" value={4.596} color="#3b82f6" maxValue={8} comment="Running lean" />
                     <HorizontalBar label="Sydney" value={7.708} color="#10b981" maxValue={8} comment="Spray and pray strategy" />
-                    <HorizontalBar label="Melbourne" value={5.381} color="#f59e0b" maxValue={8} comment="Quality over quantity" />
+                    <HorizontalBar label="Melbourne" value={5.381} color="#f59e0b" maxValue={8} comment="Right Amount?" />
                   </div>
                   
                   <div>
-                    <h3 className="font-semibold text-gray-800 mb-3">Trips per 1,000 People</h3>
+                    <h3 className="font-semibold text-gray-800 mb-3 text-center">Trips per 1,000 People</h3>
                     <HorizontalBar label="Brisbane" value={7.408} color="#3b82f6" maxValue={9} comment="Working hard" />
                     <HorizontalBar label="Sydney" value={8.583} color="#10b981" maxValue={9} comment="Working harder" />
                     <HorizontalBar label="Melbourne" value={6.973} color="#f59e0b" maxValue={9} comment="Working smarter?" />
                   </div>
                 </div>
 
-                <div className="mt-6 bg-gray-50 rounded-xl p-4">
-                  <p className="text-sm text-gray-600 italic">
-                    <strong>Fun Fact:</strong> Brisbane has the fewest stops per capita (4.60) but the highest trips per capita relative to its size. They're running buses like their lives depend on it.
-                  </p>
-                </div>
               </div>
 
               {/* Travel Times */}
               <div id="travel-times" className="bg-white rounded-2xl p-6 shadow-sm scroll-mt-24">
                 <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">4. Travel Time Reality: How Long Until You Regret Not Driving?</h2>
                 <p className="text-gray-600 mb-4">We broke down travel times into bands because "it takes a while" isn't scientific enough. From "I could walk" (0-15 min) to "I should have moved" (90+ min).</p>
-                
+                <p className="text-gray-700 font-medium mb-4 text-center">
+                  Percentage of population falling into each travel‑time band.
+                </p>
                 <div className="space-y-6">
                   {[
                     { city: 'Brisbane', data: travelTimeData.brisbane, color: '#3b82f6' },
@@ -517,14 +577,14 @@ export default function TransitShowdown() {
                     <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                     <div className="flex-1">
                       <span className="font-semibold text-green-700 text-sm">The Lucky Few (0-15 min):</span>
-                      <span className="text-xs text-green-600 ml-2">Brisbane leads with 0.25% (6,939 people). Basically, if you're this close, you're already in the CBD.</span>
+                      <span className="text-sm text-green-600 ml-2">Melbourne leads with 0.5% (28K people). Basically, if you're this close, you're already in the CBD.</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 p-3 bg-red-50 rounded-lg border border-red-200">
                     <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                     <div className="flex-1">
                       <span className="font-semibold text-red-700 text-sm">The Marathon (90+ min):</span>
-                      <span className="text-xs text-red-600 ml-2">Melbourne wins... at losing. 22.2% of Melburnians (1.19M people) need 90+ minutes. That's a lot of podcasts.</span>
+                      <span className="text-sm text-red-600 ml-2">Melbourne wins again... at losing. 22.2% of Melburnians (1.19M people) need 90+ minutes. That's a lot of podcasts.</span>
                     </div>
                   </div>
                 </div>
@@ -532,100 +592,28 @@ export default function TransitShowdown() {
 
               {/* 30-Minute City */}
               <div id="30-minute-city" className="bg-white rounded-2xl p-6 shadow-sm scroll-mt-24">
-                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">5. The 30-Minute City: Urban Planning's Broken Promise</h2>
-                <p className="text-gray-600 mb-4">Urban planners love talking about the "30-minute city" where everyone can reach essential services within half an hour. Let's see how that's going...</p>
+                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">5. The 30-Minute City</h2>
+                <p className="text-gray-600 mb-4">Urban planners love talking about the "30-minute city". Let's see how that's going...</p>
                 
-                <HorizontalBar label="Brisbane" value={6.341} color="#3b82f6" maxValue={10} comment="At least we have ferries?" />
-                <HorizontalBar label="Sydney" value={6.094} color="#10b981" maxValue={10} comment="The 30-minute city dream" />
-                <HorizontalBar label="Melbourne" value={4.301} color="#f59e0b" maxValue={10} comment="Trams help, apparently" />
+                <HorizontalBar label="Brisbane" value={6.341} color="#3b82f6" maxValue={10} comment="Best in show - if you ignore the other 93%." />
+                <HorizontalBar label="Sydney" value={6.094} color="#10b981" maxValue={10} comment="The 30-minute city: now available in theory and marketing brochures." />
+                <HorizontalBar label="Melbourne" value={4.301} color="#f59e0b" maxValue={10} comment="Trams help. But not enough to save your morning meeting." />
                 
                 <div className="mt-4 p-4 bg-orange-50 rounded-xl border border-orange-200">
                   <div className="flex items-start gap-3">
                     <Clock className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
                     <div>
                       <h4 className="font-semibold text-orange-700 text-sm mb-1">The Harsh Reality</h4>
-                      <p className="text-xs text-orange-600">Even the best performer (Brisbane at 6.34%) only gets about 6% of its population to the CBD in under 30 minutes. The "30-minute city" is more like the "30-minute... sometimes... if you're lucky... and live in specific suburbs" city.</p>
+                      <p className="text-sm text-orange-600">Even the best performer (Brisbane at 6.34%) only gets about 6% of its population to the CBD in under 30 minutes. The "30-minute city" is more like the "30-minute... sometimes... if you're lucky... and live in specific suburbs" city.</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Mode Wars */}
-              <div id="mode-wars" className="bg-white rounded-2xl p-6 shadow-sm scroll-mt-24">
-                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">6. The Mode Wars: Bus vs Train vs Ferry vs Tram</h2>
-                <p className="text-gray-600 mb-4">Each city has its favorites. Brisbane loves buses and ferries. Sydney has everything. Melbourne has trams and will never let you forget it.</p>
-                
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                  <div className="p-4 bg-blue-50 rounded-xl text-center border border-blue-200">
-                    <Bus className="w-8 h-8 text-blue-500 mx-auto mb-2" />
-                    <div className="text-lg font-bold text-blue-600">88.9%</div>
-                    <div className="text-xs text-blue-700">Sydney Bus</div>
-                  </div>
-                  <div className="p-4 bg-green-50 rounded-xl text-center border border-green-200">
-                    <Train className="w-8 h-8 text-green-500 mx-auto mb-2" />
-                    <div className="text-lg font-bold text-green-600">24.0%</div>
-                    <div className="text-xs text-green-700">Sydney Train</div>
-                  </div>
-                  <div className="p-4 bg-cyan-50 rounded-xl text-center border border-cyan-200">
-                    <Ship className="w-8 h-8 text-cyan-500 mx-auto mb-2" />
-                    <div className="text-lg font-bold text-cyan-600">5.0%</div>
-                    <div className="text-xs text-cyan-700">Brisbane Ferry</div>
-                  </div>
-                  <div className="p-4 bg-amber-50 rounded-xl text-center border border-amber-200">
-                    <Navigation className="w-8 h-8 text-amber-500 mx-auto mb-2" />
-                    <div className="text-lg font-bold text-amber-600">14.3%</div>
-                    <div className="text-xs text-amber-700">Melbourne Tram</div>
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <span className="text-sm font-medium">Bus Access Winner</span>
-                    <span className="text-green-600 font-bold">Sydney (88.9%)</span>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <span className="text-sm font-medium">Train Access Winner</span>
-                    <span className="text-green-600 font-bold">Sydney (24.0%)</span>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <span className="text-sm font-medium">Ferry Access Winner</span>
-                    <span className="text-blue-600 font-bold">Brisbane (5.0%)</span>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <span className="text-sm font-medium">Tram Access Winner</span>
-                    <span className="text-amber-600 font-bold">Melbourne (14.3%)</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Forgotten Souls */}
-              <div id="forgotten-souls" className="bg-white rounded-2xl p-6 shadow-sm scroll-mt-24">
-                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">7. The Forgotten Souls: Who Can't Get to the CBD?</h2>
-                <p className="text-gray-600 mb-4">In a 3-hour window, some people still can't make it to the CBD. These are the truly forgotten souls of the transit network.</p>
-                
-                <VerticalBarChart 
-                  data={[
-                    { label: 'Brisbane', value: 202842, color: '#ef4444', subtext: '~203k people' },
-                    { label: 'Sydney', value: 108772, color: '#f97316', subtext: '~109k people' },
-                    { label: 'Melbourne', value: 88161, color: '#fbbf24', subtext: '~88k people' }
-                  ]}
-                  maxValue={220000}
-                />
-                
-                <div className="mt-4 bg-red-50 border border-red-200 rounded-xl p-4">
-                  <div className="flex items-start gap-3">
-                    <Car className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold text-red-700 text-sm mb-1">The Car Dependency Reality</h4>
-                      <p className="text-xs text-red-600">Brisbane has 202,842 unreachable people. That's a whole city's worth of folks who have no choice but to drive (or move). Sydney (108,772) and Melbourne (88,161) do better, but 88k+ people in Melbourne still being left behind isn't exactly a win.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+              
               {/* Walkability */}
               <div id="walkability" className="bg-white rounded-2xl p-6 shadow-sm scroll-mt-24">
-                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">8. The Walkability Score: Can You Walk to a Stop?</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">6. The Walkability Score: Can You Walk to a Stop?</h2>
                 <p className="text-gray-600 mb-4">We defined "accessible" as 400m from a bus/tram stop or 800m from a train/ferry stop. Basically: can you walk there without needing a rest halfway?</p>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -634,54 +622,94 @@ export default function TransitShowdown() {
                   <GaugeChart value={83.0} color="#f59e0b" label="Melbourne" sublabel="Trams fill the gaps" />
                 </div>
 
-                <div className="mt-6 bg-gray-50 rounded-xl p-4">
+                <div className="mt-6 bg-gray-50 rounded-xl p-4 mb-4">
                   <p className="text-sm text-gray-600">Sydney dominates with 90.7% of its population within walking distance of transit. Melbourne's trams help it reach 83%, while Brisbane's river and sprawl limit it to 73.1%.</p>
                 </div>
+              
+
+              <p className="text-gray-600 mb-4">Each city has its favorites. Brisbane loves buses and ferries. Sydney has everything. Melbourne has trams and will never let you forget it.
+                Sydney doubled up with wins in buses and trains, flexing its walkable catchments like it’s showing off at a transport‑planner talent show. Brisbane’s ferries glided into first place with river access confidence, and Melbourne’s trams took the tram title because, honestly, who else was ever going to beat them.  </p>
+
+                <GroupedBarChart
+                  maxValue={100}
+                  data={[
+                    {
+                      category: "Train",
+                      items: [
+                        { label: "Sydney", value: 24, color:    "#10b981" },
+                        { label: "Melbourne", value: 23, color: "#f59e0b" },
+                        { label: "Brisbane", value: 17, color:  "#3b82f6" }
+                      ]
+                    },
+                    {
+                      category: "Bus",
+                      items: [
+                        { label: "Sydney", value: 89, color: "#10b981" },
+                        { label: "Melbourne", value: 78, color: "#f59e0b" },
+                        { label: "Brisbane", value: 72, color: "#3b82f6" }
+                      ]
+                    },
+                    {
+                      category: "Tram",
+                      items: [
+                        { label: "Sydney", value: 3, color: "#10b981" },
+                        { label: "Melbourne", value: 14, color: "#f59e0b" },
+                        { label: "Brisbane", value: 0, color: "#3b82f6" }
+                      ]
+                    },
+                    {
+                      category: "Ferries",
+                      items: [
+                        { label: "Sydney", value: 3, color: "#10b981" },
+                        { label: "Melbourne", value: 0, color: "#f59e0b" },
+                        { label: "Brisbane", value: 5, color: "#3b82f6" }
+                      ]
+                    }
+                  ]}
+                />
+
               </div>
 
-              {/* Speed vs Coverage */}
-              <div id="speed-vs-coverage" className="bg-white rounded-2xl p-6 shadow-sm scroll-mt-24">
-                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">9. Speed vs Coverage: The Transit Dilemma</h2>
-                <p className="text-gray-600 mb-4">Every transit network faces this trade-off: do you cover more area with less frequency, or focus on core areas with better service? Let's see where each city lands.</p>
+
+              {/* Forgotten Souls */}
+              <div id="forgotten-souls" className="bg-white rounded-2xl p-6 shadow-sm scroll-mt-24">
+                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">7. The Forgotten Souls: Who Can't Get to the CBD?</h2>
+                <p className="text-gray-600 mb-4">In a 3-hour window, some people still can't make it to the CBD. These are the truly forgotten souls of the transit network.
+                  Brisbane’s 7.3% are so far from the CBD that even Google Maps shrugs. Sydney and Melbourne’s outliers may be fewer, but they’re still out there bravely attempting the impossible commute like it’s an extreme sport.
+                </p>
+                <p className="text-gray-700 font-medium mb-4 text-center"> Percentage of Population who can't get to the CBD in under 3 hours</p>
+                <VerticalBarChart 
+                  data={[
+                    { label: 'Brisbane', value: 7.3, color: '#3b82f6', subtext: '~203k people' },
+                    { label: 'Sydney', value: 2, color: '#10b981', subtext: '~109k people' },
+                    { label: 'Melbourne', value: 1.6, color: '#f59e0b', subtext: '~88k people' }
+                  ]}
+                  maxValue={7.5}
+                />
+              </div>
+
+              
+
+              {/* Maps */}
+              <div id="maps" className="bg-white rounded-2xl p-6 shadow-sm scroll-mt-24">
+                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">8. Geographic View: Where the Pain Lives</h2>
                 
-                <div className="relative h-64 bg-gray-50 rounded-xl p-4">
-                  {/* Quadrant labels */}
-                  <div className="absolute top-2 left-2 text-xs text-red-600 font-bold bg-red-100 px-2 py-1 rounded">Slow & Sparse (Nightmare)</div>
-                  <div className="absolute top-2 right-2 text-xs text-green-600 font-bold bg-green-100 px-2 py-1 rounded">Fast & Dense (Dream)</div>
-                  <div className="absolute bottom-2 left-2 text-xs text-amber-600 font-bold bg-amber-100 px-2 py-1 rounded">Fast but Sparse</div>
-                  <div className="absolute bottom-2 right-2 text-xs text-blue-600 font-bold bg-blue-100 px-2 py-1 rounded">Slow but Dense</div>
-                  
-                  {/* Grid lines */}
-                  <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-300"></div>
-                  <div className="absolute top-1/2 left-0 right-0 h-px bg-gray-300"></div>
-                  
-                  {/* Data points - positioned by 30-min % and stops per 1k */}
-                  <div className="absolute" style={{ left: '65%', bottom: '20%' }}>
-                    <div className="w-4 h-4 bg-blue-500 rounded-full border-2 border-white shadow"></div>
-                    <span className="text-xs font-bold text-blue-600 -ml-2">Brisbane</span>
-                  </div>
-                  <div className="absolute" style={{ left: '62%', bottom: '85%' }}>
-                    <div className="w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow"></div>
-                    <span className="text-xs font-bold text-green-600 -ml-2">Sydney</span>
-                  </div>
-                  <div className="absolute" style={{ left: '44%', bottom: '55%' }}>
-                    <div className="w-4 h-4 bg-amber-500 rounded-full border-2 border-white shadow"></div>
-                    <span className="text-xs font-bold text-amber-600 -ml-3">Melbourne</span>
-                  </div>
-                  
-                  {/* Axis labels */}
-                  <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 text-xs text-gray-500">% Within 30 Min →</div>
-                  <div className="absolute left-1 top-1/2 transform -translate-y-1/2 -rotate-90 text-xs text-gray-500">Stops per 1,000 →</div>
-                </div>
+                <h3 className="font-semibold text-gray-800 mb-3">Brisbane</h3>
+                <MapIframe src={mapBrisbane} title="Brisbane Travel Time Bands" height="500px" />
+                <p className="text-gray-600 mb-6">The southside’s got some hefty blobs of high travel time, and honestly, the map isn’t being subtle about it. The northside–southside divide is looking very, very real.</p>
                 
-                <div className="mt-4 text-sm text-gray-600">
-                  <strong>Analysis:</strong> Brisbane sits in "Fast but Sparse" - fewer stops per capita but better 30-minute accessibility thanks to its smaller size. Sydney and Melbourne are both in "Slow but Dense" territory - more infrastructure but longer average travel times due to their larger geographic spread.
-                </div>
+                <h3 className="font-semibold text-gray-800 mb-3">Sydney</h3>
+                <MapIframe src={mapSydney} title="Sydney Travel Time Bands" height="500px" />
+                <p className="text-gray-600 mb-6">The CBD and harbour area are living the dream with 15-minute access, while the western suburbs are stuck in a slow-motion montage set to sad violin.</p>
+                
+                <h3 className="font-semibold text-gray-800 mb-3">Melbourne</h3>
+                <MapIframe src={mapMelbourne} title="Melbourne Travel Time Bands" height="500px" />
+                <p className="text-gray-600">The CBD is getting aggressively cuddled by a time-traveling octopus. Each tentacle represents a commuter’s broken dream of arriving before lunch.</p>
               </div>
 
               {/* Scorecard */}
               <div id="scorecard" className="bg-white rounded-2xl p-6 shadow-sm scroll-mt-24">
-                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">10. The Final Scorecard: And the Winner Is...</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">9. The Final Scorecard: And the Winner Is...</h2>
                 <p className="text-gray-600 mb-4">Let's tally up the wins. Green cells indicate the winner for each metric.</p>
                 
                 <div className="overflow-x-auto">
@@ -696,8 +724,6 @@ export default function TransitShowdown() {
                     </thead>
                     <tbody>
                       <ScorecardRow metric="Population" brisbane="2.78M" sydney="5.56M" melbourne="5.35M" winner="sydney" />
-                      <ScorecardRow metric="Total Stops" brisbane="12,794" sydney="42,847" melbourne="28,807" winner="sydney" />
-                      <ScorecardRow metric="Total Trips" brisbane="20,622" sydney="47,707" melbourne="37,328" winner="sydney" />
                       <ScorecardRow metric="Stops per 1,000" brisbane="4.60" sydney="7.71" melbourne="5.38" winner="sydney" />
                       <ScorecardRow metric="Trips per 1,000" brisbane="7.41" sydney="8.58" melbourne="6.97" winner="sydney" />
                       <ScorecardRow metric="Reachable %" brisbane="92.7%" sydney="98.0%" melbourne="98.4%" winner="melbourne" />
@@ -710,8 +736,7 @@ export default function TransitShowdown() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
                   <div className="bg-blue-100 rounded-xl p-4 text-center border-2 border-blue-300">
                     <div className="text-lg font-bold text-blue-700 mb-1">Brisbane Wins:</div>
-                    <ul className="text-xs text-blue-600 text-left space-y-1">
-                      <li>• Trips per 1,000 (7.41)</li>
+                    <ul className="text-sm text-blue-600 text-left space-y-1">
                       <li>• 30-min access (6.34%)</li>
                       <li>• Ferry game (5.0%)</li>
                       <li>• Weather (unofficial)</li>
@@ -719,49 +744,21 @@ export default function TransitShowdown() {
                   </div>
                   <div className="bg-green-100 rounded-xl p-4 text-center border-2 border-green-300">
                     <div className="text-lg font-bold text-green-700 mb-1">Sydney Wins:</div>
-                    <ul className="text-xs text-green-600 text-left space-y-1">
-                      <li>• Total stops (42,847)</li>
+                    <ul className="text-sm text-green-600 text-left space-y-1">
+                      <li>• Trips per 1,000 (7.71)</li>
                       <li>• Walkable access (90.7%)</li>
-                      <li>• Reachability (98.0%)</li>
-                      <li>• Having all the modes</li>
+                      <li>• Bus and Train game</li>
                     </ul>
                   </div>
                   <div className="bg-amber-100 rounded-xl p-4 text-center border-2 border-amber-300">
                     <div className="text-lg font-bold text-amber-700 mb-1">Melbourne Wins:</div>
-                    <ul className="text-xs text-amber-600 text-left space-y-1">
+                    <ul className="text-sm text-amber-600 text-left space-y-1">
                       <li>• Best reachability (98.4%)</li>
                       <li>• Tram access (14.3%)</li>
-                      <li>• Fewest unreachable (88k)</li>
                       <li>• Coffee culture (unofficial)</li>
                     </ul>
                   </div>
                 </div>
-              </div>
-
-              {/* Maps */}
-              <div id="maps" className="bg-white rounded-2xl p-6 shadow-sm scroll-mt-24">
-                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">11. Geographic View: Where the Pain Lives</h2>
-                <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6">
-                  <div className="flex items-start gap-3">
-                    <Info className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold text-yellow-700 text-sm mb-1">Map Placeholders</h4>
-                      <p className="text-xs text-yellow-600">Update the src paths below to point to your actual HTML map files showing population distribution by travel time bands (0-15, 15-30, 30-45, 45-60, 60-90, 90+ minutes).</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <h3 className="font-semibold text-gray-800 mb-3">Brisbane: The River Effect</h3>
-                <MapIframe src={mapBrisbane} title="Brisbane Travel Time Bands" height="500px" />
-                <p className="text-gray-600 text-sm mb-6">Notice how the river creates natural barriers? The southside vs northside divide is real, people.</p>
-                
-                <h3 className="font-semibold text-gray-800 mb-3">Sydney: The Sprawl</h3>
-                <MapIframe src={mapSydney} title="Sydney Travel Time Bands" height="500px" />
-                <p className="text-gray-600 text-sm mb-6">Sydney's geography (harbour, beaches, national parks) creates interesting accessibility patterns. The west is doing a lot of heavy lifting.</p>
-                
-                <h3 className="font-semibold text-gray-800 mb-3">Melbourne: The Grid</h3>
-                <MapIframe src={mapMelbourne} title="Melbourne Travel Time Bands" height="500px" />
-                <p className="text-gray-600 text-sm">Melbourne's famous grid pattern shows up in the data. The tram network creates distinct corridors of better accessibility radiating from the CBD.</p>
               </div>
 
               {/* Conclusion */}
@@ -786,18 +783,41 @@ export default function TransitShowdown() {
                     </li>
                   </ul>
                 </div>
-                <div className="bg-primary/5 rounded-xl p-4 border border-primary/20">
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    <strong>The Real Takeaway:</strong> Australian cities are car-dependent by design, and transit is playing catch-up. The "30-minute city" remains a dream for most. But hey, at least we have data to complain about now. That's progress, right?
+              </div>
+            
+            {/* Notes and References */}
+            <div id="notes" className="bg-white rounded-2xl p-2 sm:p-2 lg:p-2 shadow-sm scroll-mt-24">
+                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">
+                  Notes and References
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+                  {externalLinks.map((link) => (
+                    <a 
+                      key={link.label}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-col items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors group text-center"
+                    >
+                      <div className="w-10 h-10 bg-white rounded-full shadow-sm flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                        <link.icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <span className="text-sm font-medium text-primary group-hover:text-secondary transition-colors">
+                        {link.label}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Acknowledgements */}
+              <div id="acknowledgements" className="bg-white rounded-2xl p-6 shadow-sm scroll-mt-24">
+                  <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">
+                    Acknowledgements
+                  </h2>
+                  <p className="text-gray-600 mb-4">This project was made possible by the open data provided by the transit agencies of Brisbane, Sydney, and Melbourne. 
+                    A big shout-out to contributors of the awesome <a href="https://github.com/r5py/r5py" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">r5py</a> library for Rapid Realistic Routing.
                   </p>
-                </div>
-                <div className="mt-6 flex items-center justify-center gap-2 text-sm text-gray-500">
-                  <span>Data from February 19, 2026</span>
-                  <span>•</span>
-                  <span>GTFS Analysis</span>
-                  <span>•</span>
-                  <span>Don't @ me, I just work here</span>
-                </div>
               </div>
             </div>
 
@@ -806,39 +826,31 @@ export default function TransitShowdown() {
               <div className="bg-white rounded-2xl p-4 shadow-sm">
                 <h3 className="font-bold text-primary mb-3 text-sm">Tech Stack</h3>
                 <div className="flex flex-wrap gap-2">
-                  {["Python", "Pandas", "GTFS", "Matplotlib", "GeoPandas", "React", "Tailwind", "Data Analysis"].map((tech) => (
-                    <span key={tech} className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">{tech}</span>
+                  {techStack.map((tech) => <span key={tech} className="project-tag text-xs">{tech}</span>)}
+                </div>
+              </div>
+              
+              {/* Quick Links */}
+              <div className="bg-white rounded-2xl p-4 shadow-sm">
+                <h3 className="font-bold text-primary mb-3 text-sm">
+                  Resources
+                </h3>
+                <div className="space-y-1">
+                  {externalLinks.map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-xs text-[#555] hover:text-secondary transition-colors p-2 rounded-lg hover:bg-gray-50 group"
+                    >
+                      <link.icon className="w-4 h-4 text-gray-400 group-hover:text-secondary transition-colors" />
+                      {link.label}
+                    </a>
                   ))}
                 </div>
               </div>
               
-              <div className="bg-white rounded-2xl p-4 shadow-sm">
-                <h3 className="font-bold text-primary mb-3 text-sm">Key Metrics</h3>
-                <div className="space-y-2 text-xs text-gray-600">
-                  <div className="flex justify-between"><span>Departure Time:</span><span className="font-medium">2026-02-19 06:00</span></div>
-                  <div className="flex justify-between"><span>Time Window:</span><span className="font-medium">1 hour</span></div>
-                  <div className="flex justify-between"><span>Max Trip Time:</span><span className="font-medium">3 hours</span></div>
-                  <div className="flex justify-between"><span>Max Walk Time:</span><span className="font-medium">60 minutes</span></div>
-                  <div className="pt-2 border-t border-gray-100">
-                    <p className="text-[10px] text-gray-400">Accessible region: 400m (bus/tram) or 800m (train/ferry)</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-2xl p-4 shadow-sm">
-                <h3 className="font-bold text-primary mb-3 text-sm">Resources</h3>
-                <div className="space-y-1">
-                  <a href="#" className="flex items-center gap-2 text-xs text-gray-600 hover:text-primary transition-colors p-2 rounded-lg hover:bg-gray-50">
-                    <Database className="w-4 h-4" />GTFS Data Sources
-                  </a>
-                  <a href="#" className="flex items-center gap-2 text-xs text-gray-600 hover:text-primary transition-colors p-2 rounded-lg hover:bg-gray-50">
-                    <Github className="w-4 h-4" />Analysis Code
-                  </a>
-                  <a href="#" className="flex items-center gap-2 text-xs text-gray-600 hover:text-primary transition-colors p-2 rounded-lg hover:bg-gray-50">
-                    <BarChart3 className="w-4 h-4" />Raw Data
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
         </div>
