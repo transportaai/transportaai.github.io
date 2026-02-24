@@ -6,6 +6,7 @@ import About from '@/components/sections/About';
 import Projects from '@/components/sections/Projects';
 import Contact from '@/components/sections/Contact';
 import Footer from '@/components/sections/Footer';
+import TransitShowdown from '@/components/projects/the_great_australian_transit_showdown/the_great_australian_transit_showdown';
 import BrisbaneConnectivity from '@/components/projects/brisbane_connectivity/brisbane_connectivity';
 import TranslinkOD from '@/components/projects/translink_od/translink_od';
 import TransitmateChatbot from '@/components/projects/transitmate_chatbot/transitmate_chatbot';
@@ -111,6 +112,7 @@ function App() {
       <ScrollToTopOrHash />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/projects/the_great_australian_transit_showdown" element={<TransitShowdown />} />
         <Route path="/projects/brisbane_connectivity" element={<BrisbaneConnectivity />} />
         <Route path="/brisbane_connectivity" element={<BrisbaneConnectivity />} />
         <Route path="/projects/translink_od" element={<TranslinkOD />} />
