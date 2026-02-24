@@ -3,23 +3,13 @@ import { Link } from "react-router-dom";
 import {
   ArrowLeft,
   Clock,
-  MapPin,
   Train,
-  Bus,
   Ship,
-  Users,
   Menu,
   X,
   Github,
-  BarChart3,
-  Database,
   AlertCircle,
-  TrendingUp,
-  Zap,
-  Info,
   Navigation,
-  Car,
-  Coffee
 } from "lucide-react";
 import Footer from '@/components/sections/Footer';
 import Header from '@/components/sections/Header';
@@ -252,7 +242,7 @@ const GaugeChart = ({ value, color, label, sublabel }: { value: number; color: s
 };
 
 // Comparison Cards
-const ComparisonCard = ({ city, color, icon: Icon, population, stops, trips, tagline, wins }: { 
+const ComparisonCard = ({ city, color, icon: Icon, population, stops, trips }: { 
   city: string; color: string; icon: any; population: string; stops: string; trips: string; tagline: string; wins: string[] 
 }) => (
   <div 
@@ -336,13 +326,6 @@ export default function TransitShowdown() {
       "Python", "Pandas", "GeoPandas", "GTFS", "QGIS", "Folium", "Jupyter",
     ];
 
-  // Data from JSON files
-  const cityData = {
-    brisbane: { name: 'Brisbane', color: '#3b82f6', population: 2783782, stops: 12794, trips: 20622, reachable: 92.713, walkable: 73.145, min30: 6.341, unreachable: 202842, stopsPer1k: 4.596, tripsPer1k: 7.408 },
-    sydney: { name: 'Sydney', color: '#10b981', population: 5558560, stops: 42847, trips: 47707, reachable: 98.043, walkable: 90.733, min30: 6.094, unreachable: 108772, stopsPer1k: 7.708, tripsPer1k: 8.583 },
-    melbourne: { name: 'Melbourne', color: '#f59e0b', population: 5353539, stops: 28807, trips: 37328, reachable: 98.353, walkable: 82.968, min30: 4.301, unreachable: 88161, stopsPer1k: 5.381, tripsPer1k: 6.973 }
-  };
-
   const travelTimeData = {
     brisbane: [
       { label: '0-15 min', value: 0.249, color: '#10b981' },
@@ -368,12 +351,6 @@ export default function TransitShowdown() {
       { label: '60-90 min', value: 43.634, color: '#ef4444' },
       { label: '90+ min', value: 22.204, color: '#7c2d12' }
     ]
-  };
-
-  const modeData = {
-    brisbane: { bus: 71.616, train: 16.845, ferry: 5.027, tram: 0 },
-    sydney: { bus: 88.867, train: 24.024, ferry: 3.178, tram: 2.657 },
-    melbourne: { bus: 78.136, train: 23.060, ferry: 0, tram: 14.267 }
   };
 
   return (
