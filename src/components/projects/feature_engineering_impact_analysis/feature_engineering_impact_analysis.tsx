@@ -17,6 +17,7 @@ import {
   Target
 } from "lucide-react";
 import Footer from '@/components/sections/Footer';
+import Disclaimer from '@/components/Disclaimer';
 import Header from '@/components/sections/Header';
 import HumorWarning from '@/components/HumorWarning';
 // Import assets (placeholders - replace with actual paths)
@@ -882,6 +883,7 @@ export default function FeatureEngineeringImpactAnalysis() {
         </div>
       </section>
 
+      <Disclaimer />
       <Footer />
     </div>
   );

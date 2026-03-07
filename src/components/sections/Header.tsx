@@ -37,11 +37,18 @@ export default function Header() {
     e.preventDefault();
     setIsMenuOpen(false);
 
+    // Page route (e.g. /projects, /publications) — navigate directly
+    if (href.startsWith('/')) {
+      navigate(href);
+      return;
+    }
+
+    // Hash anchor — scroll to section on home page
     if (location.pathname !== '/') {
       navigate('/', { state: { targetId: href.substring(1) } });
       return;
     }
-    
+
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });

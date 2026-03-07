@@ -25,6 +25,7 @@ import {
 import Footer from '@/components/sections/Footer';
 import Header from '@/components/sections/Header';
 import HumorWarning from '@/components/HumorWarning';
+import Disclaimer from '@/components/Disclaimer';
 
 // Import all chart assets with ?url suffix for Vite
 // This ensures they get processed and copied to dist with hashed filenames
@@ -1254,6 +1255,7 @@ export default function BrisbaneConnectivity() {
           </div>
         </div>
       </section>
+      <Disclaimer />
       <Footer />
     </div>
   );
