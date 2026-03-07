@@ -12,6 +12,7 @@ import {
   Navigation,
 } from "lucide-react";
 import Footer from '@/components/sections/Footer';
+import Disclaimer from '@/components/Disclaimer';
 import Header from '@/components/sections/Header';
 import HumorWarning from '@/components/HumorWarning';
 
@@ -832,6 +833,7 @@ export default function TransitShowdown() {
           </div>
         </div>
       </section>
+      <Disclaimer />
       <Footer />
     </div>
   );

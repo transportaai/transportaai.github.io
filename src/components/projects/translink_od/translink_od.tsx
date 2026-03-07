@@ -18,6 +18,7 @@ import {
   X
 } from "lucide-react";
 import Footer from '@/components/sections/Footer';
+import Disclaimer from '@/components/Disclaimer';
 import Header from '@/components/sections/Header';
 import HumorWarning from '@/components/HumorWarning';
 // Import chart assets
@@ -862,6 +863,7 @@ export default function TranslinkOD() {
         </div>
       </section>
 
+      <Disclaimer />
       <Footer />
     </div>
   );
