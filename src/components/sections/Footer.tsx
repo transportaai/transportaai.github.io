@@ -18,15 +18,20 @@ export default function Footer() {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    
-    // If we're already on the home page, just scroll to the section
+
+    // Page route (e.g. /projects, /publications) — navigate directly
+    if (href.startsWith('/')) {
+      navigate(href);
+      return;
+    }
+
+    // Hash anchor — scroll to section on home page
     if (location.pathname === '/') {
       const element = document.querySelector(href);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // If we're on a project page, navigate to home and scroll to section
       const targetId = href.replace('#', '');
       navigate('/', { state: { targetId } });
     }

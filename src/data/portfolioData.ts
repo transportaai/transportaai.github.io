@@ -211,7 +211,8 @@ export const areaOfExpertise = [
 
 export const navLinks = [
   { label: "Home", href: "#home" },
-  { label: "Projects", href: "#projects" },
+  { label: "Projects", href: "/projects" },
   { label: "About Me", href: "#about" },
+  { label: "Publications", href: "/publications" },
   { label: "Contact", href: "#contact" }
 ];
