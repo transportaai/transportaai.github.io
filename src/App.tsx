@@ -31,12 +31,13 @@ function PageMetadata() {
       "/": "Home | " + baseTitle,
       "/projects": "All Projects | " + baseTitle,
       "/publications": "Publications | " + baseTitle,
-      "/projects/brisbane_connectivity": "Brisbane Connectivity | " + baseTitle,
-      "/brisbane_connectivity": "Brisbane Connectivity | " + baseTitle,
-      "/projects/translink_od": "Translink Patronage | " + baseTitle,
+      "/projects/brisbane-connectivity": "Brisbane Connectivity | " + baseTitle,
+      "/brisbane-connectivity": "Brisbane Connectivity | " + baseTitle,
+      "/projects/translink-od": "Translink Patronage | " + baseTitle,
       "/translink-od": "Translink Patronage | " + baseTitle,
-      "/projects/transitmate_chatbot": "TransitMate Chatbot | " + baseTitle,
-      "/projects/feature_engineering_impact_analysis": "Feature Engineering | " + baseTitle,
+      "/projects/transitmate-chatbot": "TransitMate Chatbot | " + baseTitle,
+      "/projects/feature-engineering-impact-analysis": "Feature Engineering | " + baseTitle,
+      "/projects/the-great-australian-transit-showdown": "Transit Showdown | " + baseTitle,
     };
 
     const newTitle = routeTitles[pathname] || "Transport Analytics & Insights | " + baseTitle;
@@ -112,13 +113,13 @@ function App() {
       <ScrollToTopOrHash />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/projects/the_great_australian_transit_showdown" element={<TransitShowdown />} />
-        <Route path="/projects/brisbane_connectivity" element={<BrisbaneConnectivity />} />
-        <Route path="/brisbane_connectivity" element={<BrisbaneConnectivity />} />
-        <Route path="/projects/translink_od" element={<TranslinkOD />} />
+        <Route path="/projects/the-great-australian-transit-showdown" element={<TransitShowdown />} />
+        <Route path="/projects/brisbane-connectivity" element={<BrisbaneConnectivity />} />
+        <Route path="/brisbane-connectivity" element={<BrisbaneConnectivity />} />
+        <Route path="/projects/translink-od" element={<TranslinkOD />} />
         <Route path="/translink-od" element={<TranslinkOD />} />
-        <Route path="/projects/transitmate_chatbot" element={<TransitmateChatbot />} />
-        <Route path="/projects/feature_engineering_impact_analysis" element={<FeatureEngineeringImpactAnalysis />} />
+        <Route path="/projects/transitmate-chatbot" element={<TransitmateChatbot />} />
+        <Route path="/projects/feature-engineering-impact-analysis" element={<FeatureEngineeringImpactAnalysis />} />
         <Route path="/projects" element={<AllProjects />} />
         <Route path="/publications" element={<Publications />} />
       </Routes>

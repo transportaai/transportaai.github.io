@@ -7,10 +7,11 @@ const routes = [
   "/",
   "/projects",
   "/publications",
-  "/projects/brisbane_connectivity",
-  "/projects/translink_od",
-  "/projects/transitmate_chatbot",
-  "/projects/feature_engineering_impact_analysis"
+  "/projects/the-great-australian-transit-showdown",
+  "/projects/brisbane-connectivity",
+  "/projects/translink-od",
+  "/projects/transitmate-chatbot",
+  "/projects/feature-engineering-impact-analysis"
 ]
 
 // Generate sitemap.xml
